@@ -5,7 +5,7 @@ public class CentroCopiado {
         GestorImpresoras gestor = new GestorImpresoras (3);        
 
         for (int i = 0; i <= 10; i++) {
-            new Thread(new Cliente(gestor, (i + 1))).start();
+            new Thread(new Cliente(gestor, (i + 1)), "Cliente-" + i).start();
         }
 
     }
