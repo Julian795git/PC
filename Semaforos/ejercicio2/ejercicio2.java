@@ -14,26 +14,24 @@ public class ejercicio2 {
             try {
                 sem2.acquire();
                 Thread.sleep(1000);
+                sem1.release();
             } catch (InterruptedException e) {
                 e.printStackTrace();
-            } finally {
-                sem1.release();
             }
         }
     }
 
-    //Si sem2 se inicializa en cero (acceso cerrado), el programa nunca podrá ingresar a la clase P1 y realizar sus operaciones al no poder obtener el permiso de entrada.
-    //Si sem1 se inicializa en uno (acceso abierto), el programa al realizar sem1.release(), estaría dejando a sem1 con 2 accesos (dejando de ser binario).
+    //Si sem2 se inicializa en cero (acceso cerrado), el programa nunca podrá ingresar a la clase P1 (Deadlock) y realizar sus operaciones al no poder obtener el permiso de entrada.
+    //Si sem1 se inicializa en uno (acceso abierto), se rompe la precedencia estricta (y potencialmente la exclusión mutua). Ejemplo: Al finalizar P1, liberará nuevamente sem1, incrementando su contador interno a 2 permisos disponibles a menos que se restrinja explícitamente.
 
     static class P2 extends Thread {
         public void run() {
             try {
                 sem3.acquire();
                 Thread.sleep(1000);
+                sem2.release();
             } catch (InterruptedException e) {
                 e.printStackTrace();
-            } finally {
-                sem2.release();
             }
         }
     }
@@ -43,11 +41,10 @@ public class ejercicio2 {
             try {
                 sem1.acquire();
                 Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            } finally {
                 sem3.release();
                 sem4.release();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
             }
         }
     }
