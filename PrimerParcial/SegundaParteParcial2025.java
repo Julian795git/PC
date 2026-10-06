@@ -1,5 +1,9 @@
 package PrimerParcial;
 
+//Diseñe un programa en Java que ejecute k hilos que se "ponen de acuerdo" sobre le uso de una pizarra, de forma que el que toma el control de la pizarra
+//enciende una señal de "ocupada" y en el momento en que termina su actividad, borra la pizarra y apaga la señal de ocupada. Entonces cualquier hilo que ande "por ahí"
+//y vea que la pizarra está desocupada puede tomar el control.
+
 import java.util.Scanner;
 
 class Pizarra {
