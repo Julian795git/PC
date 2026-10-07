@@ -139,13 +139,14 @@ class Guia implements Runnable {
         int recorridoActual = 0;
         while (recorridoActual < this.cantRecorridos) {
             try {
-                System.out.println("Recorrido " + (recorridoActual + 1) + "/" + this.cantRecorridos);
+                System.out.println("Tour " + (recorridoActual + 1) + "/" + this.cantRecorridos);
                 museo.permitirEntrar();
                 museo.iniciarTour();
                 Thread.sleep(3000);
                 museo.permitirSalir();
 
                 Thread.sleep(1000);
+                System.out.println("Guia tomándose un descanso.");
                 recorridoActual++;
             } catch (InterruptedException e) {
 
